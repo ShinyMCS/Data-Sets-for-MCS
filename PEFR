@@ -1,3 +1,11 @@
+# The PEFR data describes the comparison of two measurements of peak expiratory flow rate (PEFR). 
+# One of these measurements uses a``Large" meter and the other a ``Mini" meter.
+# Two measurements were made with a Wright peak flow meter and two with a mini Wright meter, in random order.  
+# All measurements were taken by the same observer, using the same two instruments. 
+# (These data were collected to demonstrate the statistical method and provide no evidence on the comparability of
+# these two instruments.)
+#####################################################################
+
 library(nlme)
 
 WrightOne <- c(494, 395, 516, 434, 476, 557, 413, 442, 650,  433, 417, 656, 267, 478, 178, 423, 427)
