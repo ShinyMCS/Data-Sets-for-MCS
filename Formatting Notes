@@ -1,0 +1,9 @@
+We assume the data are formatted as a dataset with four columns named:
+
+ meth, method of measurement, the number of methods being M,
+
+ item, items (persons, samples) measured by each method, of which there are I,
+
+ repl, replicate indicating repeated measurement of the same item by the same method, and
+
+ y, the measurement.
