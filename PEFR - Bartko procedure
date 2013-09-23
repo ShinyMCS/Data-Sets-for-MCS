@@ -1,0 +1,38 @@
+#############################################################
+
+X=MiniOne
+Y=MiniTwo
+
+n=length(X)
+
+As=(Y+X)/2
+Ds=(X-Y)
+plot(As,Ds)
+abline(h=0)
+abline(h=mean(Ds), lty=3)
+Cs=As-mean(As)
+SLR=lm(Ds~Cs)
+summary(SLR)
+
+
+#            Estimate Std. Error t value Pr(>|t|)  
+#(Intercept) -0.23333    0.97874  -0.238   0.8133  
+#Cs           0.09250    0.04991   1.853   0.0744 .
+
+
+to=c(0,0)
+t1=c(0,0)
+summary(SLR)$coefficients[,3]
+dist = sum(summary(SLR)$coefficients[,3]^2)
+
+
+dist = sum(summary(SLR)$coefficients[,3]^2)
+to[2]=summary(SLR)$coefficients[5]
+t1[2]=summary(SLR)$coefficients[6]
+r =2*qf(0.95,2,n-2)
+tcrit=qt(0.95,n-1)
+
+as.numeric(abs(to[2])<=tcrit)
+as.numeric(abs(t1[2])<=tcrit)
+as.numeric(dist<=r)
+#############################################################
