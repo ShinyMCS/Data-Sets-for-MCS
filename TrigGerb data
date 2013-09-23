@@ -1,0 +1,4 @@
+library(MethComp)
+data(milk)
+trig=milk[1:45,3]
+gerb=milk[46:90,3]
