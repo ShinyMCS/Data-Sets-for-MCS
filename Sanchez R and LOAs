@@ -1,0 +1,67 @@
+#R Program 81 - Sanchez
+
+S1=c(136	,267	,218	,169	,229	,227	,231	,278	,157	,186	,179	,215	,199	,242	,147	,225	,146	,162	,247	,267	,
+188	,265	,166	,197	)
+
+S2=c(160	,274	,214	,169	,240	,274	,222	,279	,
+180	,191	,186	,235	,211	,241	,164	,240	,
+144	,160	,243	,271	,200	,237	,170	,187	)
+
+
+#############################################################
+
+X=S1
+Y=S2
+
+n=length(X)
+
+As=(Y+X)/2
+Ds=(X-Y)
+plot(As,Ds)
+abline(h=0)
+abline(h=mean(Ds), lty=3)
+Cs=As-mean(As)
+SLR=lm(Ds~Cs)
+summary(SLR)
+
+
+#            Estimate Std. Error t value Pr(>|t|)  
+#(Intercept) -0.23333    0.97874  -0.238   0.8133  
+#Cs           0.09250    0.04991   1.853   0.0744 .
+
+
+to=c(0,0)
+t1=c(0,0)
+summary(SLR)$coefficients[,3]
+dist = sum(summary(SLR)$coefficients[,3]^2)
+
+
+dist = sum(summary(SLR)$coefficients[,3]^2)
+to[2]=summary(SLR)$coefficients[5]
+t1[2]=summary(SLR)$coefficients[6]
+r =sqrt(2*qf(0.95,2,n-2))
+tcrit=qt(0.95,n-2)
+
+as.numeric(abs(to[2])<=tcrit)
+as.numeric(abs(t1[2])<=tcrit)
+as.numeric(dist<=r)
+to[2]
+t1[2]
+dist
+r
+#############################################################
+
+
+
+plot(x=to,y=t1, xlim=c(-6,6),ylim=c(-6,6))
+abline(h=0,col=2,lty=2)
+abline(v=0,col=2,lty=2)
+
+
+
+zone=qt(0.95,n-1)
+abline(h=zone,col=3,lty=2)
+abline(h=-zone,col=3,lty=2)
+abline(v=zone,col=3,lty=2)
+
+abline(v=-zone,col=3,lty=2)
