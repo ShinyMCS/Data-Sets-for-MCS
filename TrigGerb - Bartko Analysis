@@ -1,0 +1,65 @@
+Trig = c(0.96, 1.16, 0.97, 1.01, 1.25, 1.22, 1.46, 1.66, 1.75, 1.72, 
+
+    1.67, 1.67, 1.93, 1.99, 2.01, 2.28, 2.15, 2.29, 2.45, 2.40, 2.79, 
+
+    2.77, 2.64, 2.73, 2.67, 2.61, 3.01, 2.93, 3.18, 3.18, 3.19, 3.12, 
+
+    3.33, 3.51, 3.66, 3.95, 4.20, 4.05, 4.30, 4.74, 4.71, 4.71, 4.74, 
+
+    5.23, 6.21)
+
+ 
+
+Gerber = c(0.85, 1.00, 1.00, 1.00, 1.20, 1.20, 1.38, 1.65, 1.68, 1.70, 
+
+    1.70, 1.70, 1.88, 2.00, 2.05, 2.17, 2.20, 2.28, 2.43, 2.55, 2.60, 
+
+    2.65, 2.67, 2.70, 2.70, 2.70, 3.00, 3.02, 3.03, 3.11, 3.15, 3.15, 
+
+    3.40, 3.42, 3.62, 3.95, 4.27, 4.30, 4.35, 4.75, 4.79, 4.80, 4.80, 
+
+    5.42, 6.20)
+    
+X = Trig
+Y = Gerber
+
+n=length(X)
+
+As=(Y+X)/2
+Ds=(X-Y)
+plot(As,Ds)
+abline(h=0)
+abline(h=mean(Ds), lty=3)
+Cs=As-mean(As)
+SLR=lm(Ds~Cs)
+summary(SLR)
+
+to=c(0,0)
+t1=c(0,0)
+summary(SLR)$coefficients[,3]
+
+#############################################################
+
+
+dist = sqrt(sum(summary(SLR)$coefficients[,3]^2))
+to[2]=summary(SLR)$coefficients[5]
+t1[2]=summary(SLR)$coefficients[6]
+r =sqrt(2*qf(0.95,2,n-2))
+#############################################################
+
+plot.new()
+plot.window(xlim=c(-4,4),ylim=c(-4,4))
+sig.level=0.05
+axis(1,pos=0,at=c(-3.3,1,2,3),labels=rep("",4),tcl=0.3,cex.axis=0.8)
+axis(2,pos=0,at=c(-3.3,1,2,3),labels=rep("",4),tcl=0.3,cex.axis=0.8,las=1)
+radius=sqrt(2*qf(p=sig.level,df1=2,df2=(n-2),lower.tail=FALSE))
+abline(h=c(-1,1)*radius,lty=2)
+abline(v=c(-1,1)*radius,lty=2)
+lines(ellipse(x=0,t=radius),type="l",col="red")
+points(to,t1)
+
+
+
+as.numeric(abs(to[2])<=radius)
+as.numeric(abs(t1[2])<=radius)
+as.numeric(dist<=radius)
