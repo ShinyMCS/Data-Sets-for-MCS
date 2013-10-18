@@ -9,3 +9,10 @@
 # nor simulataneously for all patients.
 #
 ###########################################################################################
+
+install.packages("MethComp")
+library(MethComp)
+
+data(HbA1c)
+
+summary(HbA1c)
