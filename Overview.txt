@@ -1,0 +1,8 @@
+Data sets
+Data Sets used in MCS papers
+
+Blood JSR data (used in Roy 2009 and Bland-Altman 1999_)
+PEFR : data set used in Bland and Altman 1986 paper
+Fat Data
+Oximetry data
+Hamlett  - data set that can be contrived as an MCS data set, although clearly not intended as such.
